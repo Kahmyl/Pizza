@@ -14,12 +14,15 @@ class CreatePizzaTable extends Migration
     public function up()
     {
         Schema::create('pizzas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('user');
             $table->string('type');
             $table->string('base');
             $table->string('name');
             $table->json('toppings');
+            $table->timestamps();
             
         });
     }

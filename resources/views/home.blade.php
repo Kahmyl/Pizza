@@ -15,7 +15,12 @@
                     @endif
 
                     You are logged in!
-                    <p><a href="/pizzas">View all pizza orders</a></p>
+                    @if (Auth::user()->utype === 'ADM')
+                        <p><a href="/pizzas">View all pizza orders</a></p>
+                    @else
+                        <p><a href="/pizzas/check">View your orders</a></p>
+                    @endif
+                    
                 </div>
             </div>
         </div>

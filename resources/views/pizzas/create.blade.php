@@ -2,10 +2,12 @@
 @section('content')
 <div class="wrapper create-pizza">
   <h1>Create a New Pizza</h1>
-  <form action="/pizzas" method="POST">
+  <form action="/pizzas" method="POST" wire:submit.prevent="store">
     @csrf
-    <label for="name">Your name:</label>
-    <input type="text" id="name" name="name">
+    <input type="hidden" id="name" name="user_id" value="{{Auth::user()->id}}">
+    <input type="hidden" id="name" name="user" value="{{Auth::user()->name}}">
+    <label for="name">Your address:</label>
+    <input type="text" id="name" name="name" placeholder="Street/City/State" required>
     <label for="type">Choose pizza type:</label>
     <select name="type" id="type">
        <option value="magarita">Magarita</option>
